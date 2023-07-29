@@ -36,24 +36,18 @@ Terraform é uma ferramenta para construir, alterar e criar versões de infraest
 **Para instalar o terraform**
 https://developer.hashicorp.com/terraform/downloads
 
-`terraform -h -> lista de comandos disponíveis 
-
-terraform init -> inicia o terraform no diretorio atual e faz o downloads dos providers e modulos
-
+**Principais Comandos**
+```shell
+terraform -h -> lista de comandos disponíveis
+terraform init -> inicia o terraform no diretório atual e faz o downloads dos providers e módulos
 terraform plan -> mostra/planeja o que o terraform vai fazer
-
 terraform apply -> aplica uma configuração
-
 terraform destroy -> destroi os recursos criados
-
-terraform validade -> valida se as alterações estão de acordo com as especificações
-
+terraform validade -> válida se as alterações estão de acordo com as especificações
 terraform fmt -> formata o arquivo terraform
-
 terraform -v -> retorna a versão atual do terraform instalado na máquina local
-
-terraform.tfvars -> cria um arquivo com outra forma de declarar variaveis`
-
+terraform.tfvars -> cria um arquivo com outra forma de declarar variáveis
+```
 
 **Como criar o seu primeiro script Terraform**
 https://registry.terraform.io/providers/hashicorp/aws/latest/docs
