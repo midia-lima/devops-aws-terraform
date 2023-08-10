@@ -6,6 +6,11 @@ terraform {
       source  = "hashicorp/aws"
       version = "3.23.0" # versão do provider
     }
+
+    random = {
+      source  = "hashicorp/aws"
+      version = "3.0.1" # versão do provider
+    }
   }
 }
 
@@ -17,17 +22,20 @@ provider "aws" {
 
 }
 
-resource "aws_s3_bucket" "nome-do-bucket-recurso" {
-  bucket = "nome-do-bucket"
-  acl    = "private"
+resource "aws_s3_bucket" "nome-do-bucket" {
 
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-    Managedby   = "Terraform"
-    Owner       = "Midiã Lima"
-    UpdateAt    = "2023-07-28"
-  }
+  bucket = "${random_pet.bucket.id}-${var.environment}" # interpolação
+  acl    = "private"
+  tags   = local.common_tags # local values
+}
+
+resource "aws_s3_bucket_object" "logs" {
+
+  bucket = logs
+  key    = "configs/${local.ip_filepath}" # interpolação + local values
+  source = local.ip_filepath              # local values
+  etag   = filemd5(local.ip_filepath)     # local values
+
 }
 
 resource "aws_instance" "web" {
@@ -35,4 +43,8 @@ resource "aws_instance" "web" {
   instance_type = var.aws_profile
 
   tags = var.instance_tags
+}
+
+resource "random_pet" "bucket" {
+  length = 5
 }

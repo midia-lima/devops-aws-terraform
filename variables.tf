@@ -34,3 +34,4 @@ variable "instance_tags" {
     Project = "Curso AWS"
   }
 }
+
