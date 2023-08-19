@@ -38,14 +38,22 @@ https://developer.hashicorp.com/terraform/downloads
 
 ### Principais Comandos
 
->terraform -h       -> lista de comandos disponíveis <br>
->terraform init     -> inicia o terraform no diretório atual e faz o downloads dos providers e módulos<br>
->terraform plan     -> mostra/planeja o que o terraform vai fazer<br>
->terraform apply    -> aplica uma configuração<br>
->terraform destroy  -> destroi os recursos criados<br>
->terraform validade -> válida se as alterações estão de acordo com as especificações<br>
->terraform fmt      -> formata o arquivo terraform<br>
->terraform -v       -> retorna a versão atual do terraform instalado na máquina local<br>
+```
+terraform -h       -> lista de comandos disponíveis
+terraform init     -> inicia o terraform no diretório atual e faz o downloads dos providers e módulos
+terraform plan     -> mostra/planeja o que o terraform vai fazer
+terraform apply    -> aplica as configurações
+terraform destroy  -> destroi os recursos criados
+terraform validade -> válida se as alterações estão de acordo com as especificações
+terraform fmt      -> formata o arquivo terraform
+terraform -v       -> retorna a versão atual do terraform instalado na máquina local
+```
+
+- O arquivo principal do terraform chamamos de **main.tf**
+- O bloco provider é obrigatório e aponta para qual provedor de cloud vamos usar.
+- Podemos ter mais de um provider. 
+- As tags serve para marcar/dar nome aos recursos que utilizo.
+
 
 
 ### Como criar o seu primeiro script Terraform
