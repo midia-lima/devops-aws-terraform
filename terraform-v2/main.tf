@@ -13,31 +13,45 @@ resource "aws_instance" "dev" {
     Name = "dev-${count.index}"
   }
 
+  vpc_security_group_ids = ["sg-xxxxxxxxxxxx"]
+
 }
 
 resource "aws_security_group" "acesso-ssh" {
   name        = "acesso-ssh"
   description = "acesso-ssh"
-  vpc_id      = aws_vpc.main.id
-
-  ingress {
-    description      = "TLS from VPC"
+  
+  ingress {   
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.main.cidr_block]
-    ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks      = ["0.0.0.0/0"]   
   }
 
   tags = {
     Name = "ssh"
+  }
+}
+
+resource "aws_instance" "nome-do-instance-dev" {    
+  ami = "t3.micro"
+  instance_type = "tf014"
+  key_name = "nome-da-chave"
+
+  tags = {
+    Name = "nome-do-instance-dev"
+  }
+
+  vpc_security_group_ids = ["sg-xxxxxxxxxxxx"]
+  depends_on = [aws_s3_bucket.nome-do-bucket-dev]
+
+}
+
+resource "aws_s3_bucket" "nome-do-bucket-dev" {
+  bucket = "nome-do-bucket-dev" 
+  acl    = "private"
+  tags   = {      
+    Name        = "My bucket"
+    Environment = "Dev"      
   }
 }

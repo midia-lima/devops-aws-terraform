@@ -47,12 +47,15 @@ terraform destroy  -> destroi os recursos criados
 terraform validade -> válida se as alterações estão de acordo com as especificações
 terraform fmt      -> formata o arquivo terraform
 terraform -v       -> retorna a versão atual do terraform instalado na máquina local
+terraform show     -> lê o arquivo terraform.tfstate e exibe as informações associadas (IP, rede, etc)
 ```
 
 - O arquivo principal do terraform chamamos de **main.tf**
+- O arquivo **terraform.tfstate** exibe como está o ambiente atual
 - O bloco provider é obrigatório e aponta para qual provedor de cloud vamos usar.
 - Podemos ter mais de um provider. 
 - As tags serve para marcar/dar nome aos recursos que utilizo.
+- Para utilizarmos as dependências entre os recursos utilizamos o argumento depends_on
 
 
 
