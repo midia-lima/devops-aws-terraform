@@ -18,7 +18,7 @@ variable "aws_profile" {
 variable "instance_ami" {
   type        = string
   description = ""
-  default     = "t3.micro"
+  default     = "ami-03c3a7e4263fd998c"
 }
 
 variable "instance_type" {

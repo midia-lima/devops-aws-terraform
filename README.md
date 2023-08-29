@@ -50,12 +50,30 @@ terraform -v       -> retorna a versão atual do terraform instalado na máquina
 terraform show     -> lê o arquivo terraform.tfstate e exibe as informações associadas (IP, rede, etc)
 ```
 
-- O arquivo principal do terraform chamamos de **main.tf**
-- O arquivo **terraform.tfstate** exibe como está o ambiente atual
+- O arquivo principal do terraform chamamos de **main.tf**.
+- O arquivo **terraform.tfstate** exibe como está o ambiente atual.
 - O bloco provider é obrigatório e aponta para qual provedor de cloud vamos usar.
 - Podemos ter mais de um provider. 
 - As tags serve para marcar/dar nome aos recursos que utilizo.
-- Para utilizarmos as dependências entre os recursos utilizamos o argumento depends_on
+- Para utilizarmos as dependências entre os recursos utilizamos o argumento depends_on.
+- A configuração da infraestrutura pode ser quebrada em mais de um arquivo, ou podemos deixar em um único arquivo.
+- Os arquivos de configuração podem ter qualquer nome, desde que utilizem a extensão .tf.
+- Se quisermos usar mais de um provedor podemos utilizar o alias para referenciar os recursos.
+
+## Arquivo de Estado **tfstate**
+
+O arquivo **tfstate** é responsável por guardar toda a informação referente à nossa infraestrutura que criamos com terraform dentro da pasta.
+Todos os recursos criados dentro da pasta, estarão no arquivo tfstate. Toda vez que o terraform precisa alterar, adicionar o excluir ele vai conferir o arquivo tfstate juntamente com o que temos na AWS para alterar, adicionar ou excluir.
+
+## Output Values (Valores de saída)
+De acordo com a documentação os outputs são como o retorno de uma função que ela vai retornar. Podemos usar o output values quando tivermos montando um módulo, quando queremos mostrar alguma coisa na tela (no output do terraform apply) ou quando queremos acessar alguma coisa do remote state.
+
+## Terradorm Import
+Comando que importa o recurso da AWS pelo terminal
+Exemplo
+```
+terraform import aws_s3_bucket.bucket nome_do_bucket
+```
 
 
 
