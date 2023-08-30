@@ -33,9 +33,6 @@ Terraform é uma ferramenta para construir, alterar e criar versões de infraest
     - PaaS: Kubernetes, Heroku, Digital Ocean
     - SaaS: New Relic, Datadog
 
-### Para instalar o terraform
-https://developer.hashicorp.com/terraform/downloads
-
 ### Principais Comandos
 
 ```
@@ -66,7 +63,14 @@ O arquivo **tfstate** é responsável por guardar toda a informação referente 
 Todos os recursos criados dentro da pasta, estarão no arquivo tfstate. Toda vez que o terraform precisa alterar, adicionar o excluir ele vai conferir o arquivo tfstate juntamente com o que temos na AWS para alterar, adicionar ou excluir.
 
 ## Output Values (Valores de saída)
-De acordo com a documentação os outputs são como o retorno de uma função que ela vai retornar. Podemos usar o output values quando tivermos montando um módulo, quando queremos mostrar alguma coisa na tela (no output do terraform apply) ou quando queremos acessar alguma coisa do remote state.
+De acordo com a documentação os outputs são como o retorno de uma função. Podemos usar o output values quando tivermos montando um módulo, quando queremos mostrar alguma coisa na tela (no output do terraform apply) ou quando queremos acessar alguma coisa do remote state.
+
+Exemplo:
+```
+output "nome" {
+    value = aws_s3_bucket.nome-do-bucket
+}
+```
 
 ## Terradorm Import
 Comando que importa o recurso da AWS pelo terminal
@@ -75,11 +79,20 @@ Exemplo
 terraform import aws_s3_bucket.bucket nome_do_bucket
 ```
 
+## Como alterar e destruir sua infra na AWS com Terraform
+Removendo as configurações dos recursos no arquivo de configuração, como também utilizando o comando terraform destroy.
 
 
-### Como criar o seu primeiro script Terraform
-https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+## Remote
+Armazena os states remotamente e permite a administração da infraestrutura por mais de uma pessoa.
 
-### Documentação Terraform Providers
-https://registry.terraform.io/browse/providers
+## Links Úteis
+[Para instalar o terraform](https://developer.hashicorp.com/terraform/downloads)
 
+[Providers](https://registry.terraform.io/browse/providers)
+
+[Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
+[Remote](https://developer.hashicorp.com/terraform/language/settings/backends/remote)
+
+[Terraform Cloud](https://app.terraform.io/session)

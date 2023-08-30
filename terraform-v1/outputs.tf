@@ -3,6 +3,6 @@ output "nome_do_output" {
 }
 
 output "bucket_arn" {
-  value = aws_s3_bucket.nome-do-bucket.arn
+  value       = aws_s3_bucket.nome-do-bucket.arn
   description = "value"
 }

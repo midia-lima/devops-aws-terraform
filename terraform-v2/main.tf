@@ -17,7 +17,7 @@ resource "aws_instance" "dev" {
   count         = 3
   ami           = var.amis[us-east-2]
   instance_type = "t3.medium"
-  key_name      = "nome-da-chave"
+  key_name      = var.nome-da-chave
 
   tags = {
     Name = "dev-${count.index}"
@@ -30,7 +30,7 @@ resource "aws_instance" "dev" {
 resource "aws_instance" "dev-4" {
   ami           = "ami-07b14488da8ea02a0"
   instance_type = "t3.medium"
-  key_name      = "nome-da-chave"
+  key_name      = var.nome-da-chave
 
   tags = {
     Name = "dev-4"
@@ -43,12 +43,26 @@ resource "aws_instance" "dev-4" {
 
 resource "aws_instance" "dev-5" {
   provider      = "aws.us-east-2"
-  ami           = "ami-07b14488da8ea02a0"
+  ami           = var.amis[us-east-2]
   instance_type = "t3.medium"
-  key_name      = "nome-da-chave"
+  key_name      = var.nome-da-chave
 
   tags = {
     Name = "dev-5"
+  }
+
+  vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"]
+
+}
+
+resource "aws_instance" "dev-6" {
+  provider      = "aws.us-east-2"
+  ami           = "ami-07b14488da8ea02a0"
+  instance_type = "t3.medium"
+  key_name      = var.nome-da-chave
+
+  tags = {
+    Name = "dev-6"
   }
 
   vpc_security_group_ids = ["${aws_security_group.acesso-ssh-us-east-2.id}"]
